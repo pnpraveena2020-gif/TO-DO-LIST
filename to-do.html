@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+
+  <style>
+    body{
+      font-family: 'Times New Roman', Times, serif;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    input{
+      padding: 10px;
+      width: 220px;
+    }
+
+    button{
+      padding: 10px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    li{
+      margin: 10px;
+      list-style: none;
+    }
+
+    .completed{
+      text-decoration: line-through;
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>To-Do List</h1>
+
+  <input type="text" id="task" placeholder="Enter task">
+  <button onclick="addTask()">Add</button>
+
+  <ul id="list"></ul>
+
+  <script>
+
+    // Load saved tasks when page opens
+    window.onload = function() {
+      document.getElementById("list").innerHTML =
+        localStorage.getItem("tasks") || "";
+    };
+
+    function saveTasks() {
+      localStorage.setItem(
+        "tasks",
+        document.getElementById("list").innerHTML
+      );
+    }
+
+    function addTask() {
+
+      let task = document.getElementById("task").value;
+
+      if(task == ""){
+        alert("Enter a task");
+        return;
+      }
+
+      let li = document.createElement("li");
+
+      li.innerHTML =
+        `<span>${task}</span>
+
+        <button onclick="completeTask(this)">Completed</button>
+
+        <button onclick="editTask(this)">Edit</button>
+
+        <button onclick="deleteTask(this)">Delete</button>`;
+
+      document.getElementById("list").appendChild(li);
+
+      document.getElementById("task").value = "";
+
+      saveTasks();
+    }
+
+    function deleteTask(button) {
+      button.parentElement.remove();
+      saveTasks();
+    }
+
+    function editTask(button) {
+
+      let span = button.parentElement.querySelector("span");
+
+      let newText = prompt("Edit task", span.innerText);
+
+      if(newText != null){
+        span.innerText = newText;
+        saveTasks();
+      }
+    }
+
+    // Complete button function
+    function completeTask(button) {
+
+      let span = button.parentElement.querySelector("span");
+
+      span.classList.toggle("completed");
+
+      saveTasks();
+    }
+
+  </script>
+
+</body>
+</html>
