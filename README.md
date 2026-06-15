@@ -1,6 +1,8 @@
+Intern-Id:CITS4667
 To-Do-List Web Application-
 
 A simple and interactive To-Do List application built using HTML, CSS, and JavaScript. This project helps users manage daily tasks efficiently with features like adding, editing, completing, deleting, and saving tasks.
+
 
 ✨Features✨-
 Add new tasks
@@ -9,10 +11,14 @@ Mark tasks as completed
 Delete tasks
 Automatically saves tasks using browser Local Storage
 Responsive and simple user interface
+
+
 ✨Technologies Used✨-
 HTML
 CSS
 JavaScript
+
+
 ✨How It Works✨-
 Users can enter a task and click the Add button.
 Tasks are displayed dynamically on the page.
